@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if ! [ -f ./node_modules/cesium/package.json ]; then
+  echo "No cesium found."
+  exit 1
+fi
+
+if [ -f ./node_modules/cesium/Build/Cesium/Cesium.js ]; then
+  echo "Seems to be already built."
+  exit 0
+fi
+
+echo "Building Cesium"
+cd ./node_modules/cesium
+npm install
+npm run release
+cd ../..
